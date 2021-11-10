@@ -215,7 +215,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user
 - 은행 정보 `digits` 속성의 숫자를 모두 더하면 각 은행의 유효한 계좌번호 길이가 됩니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/account/banks
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account/banks
   \ -X 'GET'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -285,7 +285,7 @@ undefined
 - 잔액의 단위는 '원화(￦)'입니다. 
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/account 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
   \ -X 'GET'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -333,7 +333,7 @@ undefined
 - 요청하는 전화번호에는 `-` 구분이 없어야 합니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/account 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -374,7 +374,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/account
 - 해지한 계좌는 다시 연결해도 잔액이 반영되지 않습니다.(기본 금액으로 추가됩니다)
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/account 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
   \ -X 'DELETE'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -414,7 +414,7 @@ true
 - 상세 정보가 아닌 기본 정보의 제품 상세 사진은 포함되지 않습니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products 
   \ -X 'GET'
   \ -H 'masterKey: true'
 ```
@@ -467,7 +467,7 @@ undefined
 - 관리자 전용 API입니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/transactions/all 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all 
   \ -X 'GET'
   \ -H 'masterKey: true'
 ```
@@ -525,7 +525,7 @@ undefined
 - 제품 상세 사진은 4MB 이하여야 합니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products 
   \ -X 'POST'
   \ -H 'masterKey: true'
 ```
@@ -582,7 +582,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products
 - 매진은 다시 해제할 수 있습니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/:productId
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/:productId
   \ -X 'PUT'
   \ -H 'masterKey: true'
 ```
@@ -630,7 +630,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/:pr
 - 공용 API입니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/:productId
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/:productId
   \ -X 'GET'
 ```
 
@@ -671,7 +671,7 @@ undefined
 - 매진된 제품은 검색되지 않습니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/search
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search
   \ -X 'POST'
 ```
 
@@ -717,7 +717,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/sea
 - 선택한 계좌의 잔액보다 결제 금액이 크면 결제 처리되지 않습니다.(에러 반환)
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/buy 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy 
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -749,7 +749,7 @@ true
 - 구매 취소시 결제한 계좌로 환불됩니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/cancel 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel 
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -779,7 +779,7 @@ true
 - 구매 확정 후에는 취소할 수 없습니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/ok 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok 
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -809,7 +809,7 @@ true
 - 내역의 기본 정보만 포함됩니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/transactions/details 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details 
   \ -X 'GET'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
@@ -872,7 +872,7 @@ undefined
 - 사용자 전용 API입니다.
 
 ```curl
-curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/products/transactions/detail 
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/detail 
   \ -X 'POST'
   \ -H 'Authorization: Bearer <accessToken>'
 ```
