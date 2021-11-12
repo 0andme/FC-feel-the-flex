@@ -518,6 +518,21 @@ undefined
 ]
 ```
 
+응답 데이터에 `reservation` 값이 `null`이 아닌 경우 예시:
+
+```json
+[
+  {
+    "reservation": {
+      "start": "2021-11-12T06:00:00.000Z",
+      "end": "2021-11-12T07:00:00.000Z",
+      "isCanceled": false,
+      "isExpired": true
+    }
+  }
+]
+```
+
 ### 판매 내역 관리
 
 - 관리자 전용 API입니다.
@@ -695,6 +710,21 @@ undefined
   "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png",
   "reservations": []
 }
+```
+
+응답 데이터에 `reservations` 값이 `[]`(빈 배열)이 아닌 경우 예시:
+
+```json
+[
+  {
+    "reservation": {
+      "start": "2021-11-12T06:00:00.000Z",
+      "end": "2021-11-12T07:00:00.000Z",
+      "isCanceled": false,
+      "isExpired": true
+    }
+  }
+]
 ```
 
 ### 제품 검색
