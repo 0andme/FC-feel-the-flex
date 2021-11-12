@@ -715,16 +715,18 @@ undefined
 응답 데이터에 `reservations` 값이 `[]`(빈 배열)이 아닌 경우 예시:
 
 ```json
-[
-  {
-    "reservation": {
-      "start": "2021-11-12T06:00:00.000Z",
-      "end": "2021-11-12T07:00:00.000Z",
-      "isCanceled": false,
-      "isExpired": true
+{
+  "reservations": [
+    {
+      "reservation": {
+        "start": "2021-11-12T06:00:00.000Z",
+        "end": "2021-11-12T07:00:00.000Z",
+        "isCanceled": false,
+        "isExpired": true
+      }
     }
-  }
-]
+  ] 
+}
 ```
 
 ### 제품 검색
