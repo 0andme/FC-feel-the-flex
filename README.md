@@ -282,7 +282,7 @@ undefined
 ### 계좌 목록 및 잔액 조회
 
 - 계좌번호는 일부만 노출됩니다. E.g. `"356-XXXX-XXXX-XX"`
-- 잔액의 단위는 '원화(￦)'입니다. 
+- 잔액의 단위는 '원화(￦)'입니다.
 
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account 
@@ -405,7 +405,7 @@ true
 ## 제품
 
 '제품' 관련 API는 관리자 전용과 일반 사용자 전용으로 구분됩니다.<br>
-공용 API도 있으니 주의하세요! 
+공용 API도 있으니 주의하세요!
 
 ### 모든 제품 조회
 
@@ -510,11 +510,44 @@ undefined
       "bankCode": "004",
       "accountNumber": "123-XX-XXXX-XXX"
     },
+    "reservation": null,
     "timePaid": "2021-11-07T20:01:49.100Z",
     "isCanceled": false,
     "done": false
   }
 ]
+```
+
+### 판매 내역 관리
+
+- 관리자 전용 API입니다.
+- 판매 내역을 취소하면, 예약도 같이 취소됩니다.
+- 판매 내역을 취소 해제하면, 예약도 같이 취소 해제됩니다.
+
+```curl
+curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/:detailId 
+  \ -X 'PUT'
+  \ -H 'masterKey: true'
+```
+
+```plaintext
+@param {Boolean} isCanceled - 판매 취소 여부 (사용자의 '제품 구매 취소' 상태와 같습니다)
+@param {Boolean} done - 판매 완료 여부 (사용자의 '제품 구매 확정' 상태와 같습니다)
+@return {Boolean} - 처리 여부
+```
+
+요청 데이터 예시:
+
+```json
+{
+  "isCanceled": true
+}
+```
+
+응답 데이터 예시:
+
+```js
+true
 ```
 
 ### 제품 추가
@@ -659,7 +692,8 @@ undefined
   ],
   "isSoldOut": false,
   "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png",
-  "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png"
+  "photo": "https://storage.googleapis.com/heropy-api/voihKb3NLGcv195257.png",
+  "reservations": []
 }
 ```
 
@@ -725,6 +759,9 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy
 ```plaintext
 @param {String} productId - 구매할 제품 ID (필수!)
 @param {String} accountId - 결제할 계좌 ID (필수!)
+@param {Object} reservation - 예약 정보
+@param {String} reservation.start - 예약 시작 시간 (ISO)
+@param {String} reservation.end - 예약 종료 시간 (ISO)
 @return {Boolean} - 결제 여부
 ```
 
@@ -733,7 +770,11 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy
 ```json
 {
   "productId": "nbqtQvEivYwEXTDet7YM",
-  "accountId": "Mq2KKHk8vlmr6Xkg58Fa"
+  "accountId": "Mq2KKHk8vlmr6Xkg58Fa",
+  "reservation": {
+    "start": "2021-11-12T06:00:00.000Z",
+    "end": "2021-11-12T07:00:00.000Z"
+  }
 }
 ```
 
@@ -755,7 +796,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel
 ```
 
 ```plaintext
-@param {String} productId - 구매 취소할 제품 ID (필수!)
+@param {String} detailId - 구매를 취소할 구매 내역 ID (필수!)
 @return {Boolean} - 취소 여부
 ```
 
@@ -763,7 +804,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel
 
 ```json
 {
-  "productId": "nbqtQvEivYwEXTDet7YM"
+  "detailId": "dMhfxyrAupQP18OYmywy"
 }
 ```
 
@@ -785,7 +826,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok
 ```
 
 ```plaintext
-@param {String} productId - 구매 확정할 제품 ID (필수!)
+@param {String} detailId - 구매를 확정할 구매 내역 ID (필수!)
 @return {Boolean} - 구매 확정 여부
 ```
 
@@ -793,7 +834,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok
 
 ```json
 {
-  "productId": "cFmeC7aY5KjZbBAdJE9y"
+  "detailId": "dMhfxyrAupQP18OYmywy"
 }
 ```
 
@@ -842,6 +883,7 @@ undefined
       ],
       "thumbnail": "https://storage.googleapis.com/heropy-api/vIKMk_jy4Yv195256.png"
     },
+    "reservation": null,
     "timePaid": "2021-11-07T20:17:32.112Z",
     "isCanceled": true,
     "done": false
@@ -859,6 +901,12 @@ undefined
         "컴퓨터"
       ],
       "thumbnail": "https://storage.googleapis.com/heropy-api/vBAK4MQdH5v195712.png"
+    },
+    "reservation": {
+      "start": "2021-11-12T06:00:00.000Z",
+      "end": "2021-11-12T07:00:00.000Z",
+      "isCanceled": false,
+      "isExpired": true
     },
     "timePaid": "2021-11-07T20:01:49.100Z",
     "isCanceled": false,
@@ -878,7 +926,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
 ```
 
 ```plaintext
-@param {String} productId - 상세 내역을 확인할 제품 ID (필수!)
+@param {String} detailId - 상세 내용을 확인할 구매 내역 ID (필수!)
 @return {Object} - 해당 제품의 상세 구매 정보
 ```
 
@@ -886,7 +934,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
 
 ```json
 {
-  "productId": "cFmeC7aY5KjZbBAdJE9y"
+  "detailId": "dMhfxyrAupQP18OYmywy"
 }
 ```
 
@@ -913,6 +961,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transact
     "bankCode": "004",
     "accountNumber": "123-XX-XXXX-XXX"
   },
+  "reservation": null,
   "timePaid": "2021-11-07T20:01:49.100Z",
   "isCanceled": false,
   "done": true
