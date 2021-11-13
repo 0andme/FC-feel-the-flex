@@ -17,38 +17,42 @@
         <span>내 정보</span>
       </header>
       <div class="devider"></div>
-      <RouterLink
-        to="user"
-        @click="isShow=false">
-        <div class=" user_profile menu">
-          <UserProfileImg :page-name="pageName='menu'" />
-          <span class="user_profile__name">{{ currentUser.displayName }}</span>
-          <span>{{ currentUser.email }}</span>      
-        </div>
-      </RouterLink>
-      <div class="devider"></div>
-      <div class="menu_list">
+      <div class="menu_container">
         <RouterLink
           to="user"
-          class="menu_item"
           @click="isShow=false">
-          마이 페이지
-        </RouterLink>     
-
-        <!-- <RouterLink>장바구니</RouterLink> -->
-        <RouterLink
-          to="settings"
-          class="menu_item"
-          @click="isShow=false">
-          설정
+          <div class=" user_profile menu">
+            <UserProfileImg :page-name="pageName='menu'" />
+            <span class="user_profile__name">{{ currentUser.displayName }}</span>
+          </div>
+          <div class="user_profile__email">
+            {{ currentUser.email }}
+          </div>
         </RouterLink>
-      </div>
+        <div class="devider"></div>
+        <div class="menu_list">
+          <RouterLink
+            to="user"
+            class="menu_item"
+            @click="isShow=false">
+            마이 페이지
+          </RouterLink>     
 
-      <div class="devider"></div>
-      <div
-        class="menu_item"
-        @click="userLogOut">
-        로그아웃
+          <!-- <RouterLink>장바구니</RouterLink> -->
+          <RouterLink
+            to="settings"
+            class="menu_item"
+            @click="isShow=false">
+            설정
+          </RouterLink>
+        </div>
+
+        <div class="devider"></div>
+        <div
+          class="menu_item"
+          @click="userLogOut">
+          로그아웃
+        </div>
       </div>
     </template>    
   </FullscreenModal>
@@ -111,7 +115,34 @@ a {
   border-bottom: 1px solid #3d3d3d;  // 수정 색상 태그
   margin : 10px 0;
 }
-// 유저 프로필 요소
+
+.menu_container{
+  width: 70%;
+  margin: 0 auto;
+  padding: 8px 10px;
+
+  // 메뉴 목록
+  .menu_list{
+    display: flex;
+    flex-direction: column;
+  }
+  // 각 메뉴 아이템
+  .menu_item{
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 10px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+    // 메뉴 아이템 호버
+    &:hover{
+      color: $color-danger;  // 수정 - 색상
+    }
+  }
+}
+// 유저 프로필 요소 
 .user_profile{
   $profileSize:40px;
 
@@ -133,45 +164,22 @@ a {
     .user_profile__name{
       @include profileName;
       margin-right: 8px;
-    }
-    
-    
+    }  
     }
   // 메뉴 모달 창의 프로필 요소
   &.menu{
     display: flex;
     justify-content: flex-start;
-    padding: 8px 10px;
     .user_profile__name{
       margin: 0 8px;
       font-size: 1.3rem;
       font-weight: 700;
-    }
-    span{
-      font-size: .8rem;
-    }
-
+    }  
   }
-  
 }
-// 메뉴 목록
-.menu_list{
-  display: flex;
-  flex-direction: column;
-}
-// 각 메뉴 아이템
-.menu_item{
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 30px;
-  margin-bottom: 10px;
-  &:last-child{
-    margin-bottom: 0;
-  }
-  // 메뉴 아이템 호버
-  &:hover{
-    color: $color-danger;  // 수정 - 색상
-  }
+// 유저 이메일 요소
+.user_profile__email{
+  font-size: .8rem;
+  padding: 5px 0 0;
 }
 </style>
