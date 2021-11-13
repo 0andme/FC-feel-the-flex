@@ -12,14 +12,14 @@
       <input
         v-model="userPw"
         
-        type="password" />
+        type="text" />
   
       <span>비밀번호</span>
       <!-- <span v-show="!isVaildPw">{{ pwErrMsg }}</span> -->
       <input
         v-model="useNickname"
         placeholder="8자 이상 필수"
-        type="text" />  
+        type="password" />  
     </template>
     <template #submitBtn>
       <button @click="userSignUp">
