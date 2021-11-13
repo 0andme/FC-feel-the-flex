@@ -380,7 +380,7 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/account
 ```
 
 ```plaintext
-@param {String} accessId - 계좌 ID (필수!)
+@param {String} accountId - 계좌 ID (필수!)
 @param {Boolean} signature - 서명 (필수!)
 @return {Boolean} - 계좌 해지 여부
 ```
