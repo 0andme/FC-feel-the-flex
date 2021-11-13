@@ -9,10 +9,7 @@
         @click="isShow=true">
         <span class="user_profile__name">{{ currentUser.displayName }}</span>
         <!-- 사용자 이미지 혹은 이름 맨 앞 글자 -->
-        <div class="user_profile__img">
-          <!-- <img src="" alt=""> -->
-          <span>{{ currentUser.displayName[0] }}</span>
-        </div>
+        <UserProfileImg :page-name="pageName='main'" />
       </div>
     </template>
     <template #default>
@@ -24,16 +21,12 @@
         to="user"
         @click="isShow=false">
         <div class=" user_profile menu">
-          <!-- 사용자 이미지 혹은 이름 맨 앞 글자 -->
-          <div class="user_profile__img">
-            <!-- <img src="" alt=""> -->
-            <span>{{ currentUser.displayName[0] }}</span>
-          </div>
+          <UserProfileImg :page-name="pageName='menu'" />
           <span class="user_profile__name">{{ currentUser.displayName }}</span>
+          <span>{{ currentUser.email }}</span>      
         </div>
       </RouterLink>
       <div class="devider"></div>
-
       <div class="menu_list">
         <RouterLink
           to="user"
@@ -64,14 +57,15 @@
 <script>
 import FullscreenModal from './FullscreenModal'
 import {logOut} from '~/utils/authApi'
-
+import UserProfileImg from './UserProfileImg'
 export default {
-  components: { FullscreenModal },
+  components: { FullscreenModal,UserProfileImg },
   // emits:[changeIsHover],
   data(){
     return{
       isShow:false,
-      modalName:'menu'
+      modalName:'menu',
+      pageName:'main'
 
     }
   },
@@ -121,7 +115,7 @@ a {
 .user_profile{
   $profileSize:40px;
 
-  width: 145px;
+  // width: 145px;
   height: 55px;
   display: flex;
   justify-content: center;
@@ -133,30 +127,14 @@ a {
   @mixin profileName{
     font-weight: 700;
   }
-  @mixin profileImg{
-    width: $profileSize;
-    height: $profileSize;
-    border-radius: 50%;
-    background-color: $color-secondary;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    color: #fff; // 수정 - 색상 태그 
-    span{
-      margin-top:3px ;
-    }
-  }
+  
   //메인 홈페이지의 프로필 요소
   &.main{
     .user_profile__name{
       @include profileName;
       margin-right: 8px;
     }
-    .user_profile__img{
-      @include profileImg()
-    }
+    
     
     }
   // 메뉴 모달 창의 프로필 요소
@@ -165,12 +143,12 @@ a {
     justify-content: flex-start;
     padding: 8px 10px;
     .user_profile__name{
-      margin-left: 8px;
+      margin: 0 8px;
       font-size: 1.3rem;
       font-weight: 700;
     }
-    .user_profile__img{
-      @include profileImg()
+    span{
+      font-size: .8rem;
     }
 
   }
