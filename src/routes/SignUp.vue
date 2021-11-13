@@ -6,18 +6,18 @@
     <template #default>
       <span>이름</span>
       <input
-        v-model="userEmail"
+        v-model="userNickname"
         type="text" />
       <span>이메일 주소</span>
       <input
-        v-model="userPw"
+        v-model="userEmail"
         
         type="text" />
   
       <span>비밀번호</span>
       <!-- <span v-show="!isVaildPw">{{ pwErrMsg }}</span> -->
       <input
-        v-model="useNickname"
+        v-model="userPw"
         placeholder="8자 이상 필수"
         type="password" />  
     </template>
@@ -51,7 +51,7 @@ export default {
     return{
       userEmail: '',
       userPw: '',
-      useNickname: '',
+      userNickname: '',
       signed:false,
       // pwErrMsg:null,
       // isVaildPw:null
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     userSignUp() {
-      const data={email:this.userEmail,password: this.userPw,displayName:this.useNickname}
+      const data={displayName:this.userNickname,email:this.userEmail,password: this.userPw,}
       signUp(data).then(()=>{
         this.signed=true
       })
