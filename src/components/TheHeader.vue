@@ -3,9 +3,6 @@
     <RouterLink to="/">
       Home
     </RouterLink>
-    <RouterLink to="/about">
-      About
-    </RouterLink>
     <!-- 필수(인증 Api) -->
     <template v-if="!currentUser">
       <RouterLink to="/login">
