@@ -1,0 +1,126 @@
+<template>
+  <SignInOutTemplate>
+    <template #pageName>
+      <h1>이메일로 가입하기</h1>
+    </template>
+    <template #default>
+      <span>이름</span>
+      <input
+        v-model="userNickname"
+        type="text" />
+      <span>이메일 주소</span>
+      <input
+        v-model="userEmail"
+        
+        type="text" />
+  
+      <span>비밀번호</span>
+      <!-- <span v-show="!isVaildPw">{{ pwErrMsg }}</span> -->
+      <input
+        v-model="userPw"
+        placeholder="8자 이상 필수"
+        type="password" />  
+    </template>
+    <template #submitBtn>
+      <button @click="userSignUp">
+        가입하기
+      </button>
+    </template>
+
+    <template #isSignInUp>
+      <span>이미 FLEX한 회원이신가요?</span>
+      <div class="roter_link">
+        <RouterLink to="/login">
+          기존 계정으로 로그인하기 
+        </RouterLink>
+      </div>
+    </template>
+  </SignInOutTemplate>
+</template>
+
+    <!-- 만약 회원가입성공이라면 보일 화면 -->
+<script>
+import {signUp} from '~/utils/authApi'
+import SignInOutTemplate from '~/components/SignInOutTemplate'
+
+export default {
+  components:{
+    SignInOutTemplate
+  },
+  data(){
+    return{
+      userEmail: '',
+      userPw: '',
+      userNickname: '',
+      signed:false,
+      // pwErrMsg:null,
+      // isVaildPw:null
+    }
+  },
+  methods: {
+    userSignUp() {
+      const data={displayName:this.userNickname,email:this.userEmail,password: this.userPw,}
+      signUp(data).then(()=>{
+        this.signed=true
+      })
+    },
+    // pwCheck(){
+    //   if(!/^[a-zA-Z0-9]{8,20}$/.test(this.userPw)){
+    //    this.pwErrMsg='비밀번호는 숫자와 영문자 조합으로 8~20자리를 사용해야 합니다'
+    //     this.isVaildPw=false
+    //   }
+    //   else{
+    //     this.isVaildPw=true
+    //   }
+    // }
+  }
+}
+</script>
+<style lang="scss" scoped>
+h1{
+  font-size: 24px;
+  line-height: 36px;
+  text-align: left;
+  margin: 0 0 32px;
+
+}
+input{
+  width: 100%;
+  min-width: 100px;
+  padding: 13px 10px;
+  box-sizing: border-box;
+
+  border: 1px solid rgb(230,230,230); //수정 -색상
+  font-size:14px ;
+  border-radius: 4px;
+  margin: 0 0 12px;
+}
+button{
+  width: 100%;
+  min-width: 100px;
+
+  background-color: #ff5757; //수정 -색상
+  border-radius: 4px;
+  border: none;
+  color: #fff; //수정 - 색상
+  cursor: pointer;
+  margin: 0 0 20px;
+  padding: 0;
+  height: 44px;
+}
+span{
+  font-size: 13px;
+  color: rgb(109,109,109);
+
+}
+.roter_link{
+  
+  a{
+    font-size: 13px;
+    color: #27a3ff;
+    font: optional;
+  }
+  
+
+}
+</style>
