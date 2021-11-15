@@ -1,11 +1,11 @@
 <template>
   <li 
-    :class="{'isClick':isClick}"
+    :class="[{'isClick':isClick},`bank_${bankItem.code} banklist_item`]"
     @click="isClicked">
-    <div :class="[`bank_${bankItem.code} banklist_item`]">
-      <span class="ico"></span>
-      <span>{{ bankItem.name }}</span>
-    </div>
+    <img
+      :src="bankLogo.find(data=>data.code===bankItem?.code)?.src"
+      :alt="userBank?.bankName" />
+    <span>{{ bankItem.name }}</span>
   </li>
 </template>
 <script>
@@ -24,7 +24,44 @@ export default {
   emits:['clickCount','clickBankItem'],
   data(){
     return{
-      isClick:false
+      isClick:false,
+      bankLogo:[
+        {
+          src:'/bankIco/bank_081.png',
+          code :'081',
+          name:'하나은행'
+        },
+        {
+          src:'/bankIco/bank_088.png',
+          code :'088',
+          name:'신한은행'
+        },
+        {
+          src:'/bankIco/bank_004.png',
+          code :'004',
+          name:'KB국민은행'
+        },
+        {
+          src:'/bankIco/bank_020.png',
+          code :'020',
+          name:'우리은행'
+        },
+        {
+          src:'/bankIco/bank_089.png',
+          code :'089',
+          name:'케이뱅크'
+        },
+        {
+          src:'/bankIco/bank_090.png',
+          code :'090',
+          name:'카카오뱅크'
+        },
+        {
+          src:'/bankIco/bank_011.png',
+          code :'011',
+          name:'"NH농협은행"'
+        },
+      ]
     }
   },
   methods:{
@@ -45,25 +82,27 @@ export default {
 <style lang="scss" scoped>
 li{
   width: 50%;
+  height: 80px;
   list-style:none;
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  img{
+    width: 50px;
+    height: 50px;
+  }
 
   &.isClick{
     background-color:lightgreen;
   }
-}
-.banklist_item{
-  
-  padding: 50px 2px 8px;
-  cursor: pointer;
   span{
     display: block;
     text-align: center;
-    // height: 50px;
-    // line-height: 20px;
-  }
-
+}
 }
 
 </style>
