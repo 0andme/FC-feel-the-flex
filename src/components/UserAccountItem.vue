@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import {getUserBankList,delUserBank} from '~/utils/bankApi'
+import {getBankList,getUserBankList,delUserBank} from '~/utils/bankApi'
 export default {
   props:{
     userBank:{
@@ -82,6 +82,10 @@ export default {
             userAccountList:data.accounts
             })
           })
+          getBankList()
+            .then((data)=>{
+              this.$store.commit('bank/assignState',{allBankList:data})
+            }) 
         })
       }
     }
