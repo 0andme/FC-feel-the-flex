@@ -11,11 +11,8 @@
       <span>이메일 주소</span>
       <input
         v-model="userEmail"
-        
         type="text" />
-  
       <span>비밀번호</span>
-      <!-- <span v-show="!isVaildPw">{{ pwErrMsg }}</span> -->
       <input
         v-model="userPw"
         placeholder="8자 이상 필수"
@@ -38,7 +35,7 @@
   </SignInOutTemplate>
 </template>
 
-    <!-- 만약 회원가입성공이라면 보일 화면 -->
+<!-- 만약 회원가입성공이라면 보일 화면 -->
 <script>
 import {signUp} from '~/utils/authApi'
 import SignInOutTemplate from '~/components/SignInOutTemplate'
@@ -53,8 +50,6 @@ export default {
       userPw: '',
       userNickname: '',
       signed:false,
-      // pwErrMsg:null,
-      // isVaildPw:null
     }
   },
   methods: {
@@ -62,17 +57,9 @@ export default {
       const data={displayName:this.userNickname,email:this.userEmail,password: this.userPw,}
       signUp(data).then(()=>{
         this.signed=true
+        this.$router.push('/')
       })
     },
-    // pwCheck(){
-    //   if(!/^[a-zA-Z0-9]{8,20}$/.test(this.userPw)){
-    //    this.pwErrMsg='비밀번호는 숫자와 영문자 조합으로 8~20자리를 사용해야 합니다'
-    //     this.isVaildPw=false
-    //   }
-    //   else{
-    //     this.isVaildPw=true
-    //   }
-    // }
   }
 }
 </script>
