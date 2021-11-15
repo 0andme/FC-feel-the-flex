@@ -18,6 +18,7 @@
       </header>
       <div class="devider"></div>
       <div class="menu_container">
+        <!-- 유저 프로필 -->
         <RouterLink
           to="user"
           @click="isShow=false">
@@ -28,6 +29,7 @@
           <div class="user_profile__email">
             {{ currentUser.email }}
           </div>
+          <!-- 마이 페이지 -->
         </RouterLink>
         <div class="devider"></div>
         <div class="menu_list">
@@ -37,8 +39,15 @@
             @click="isShow=false">
             마이 페이지
           </RouterLink>     
-
           <!-- <RouterLink>장바구니</RouterLink> -->
+          <!-- 계좌관리 -->
+          <RouterLink
+            to="myaccount"
+            class="menu_item"
+            @click="isShow=false">
+            계좌 관리
+          </RouterLink>
+          <!-- 설정 페이지 -->
           <RouterLink
             to="settings"
             class="menu_item"
@@ -46,8 +55,8 @@
             설정
           </RouterLink>
         </div>
-
         <div class="devider"></div>
+        <!-- 로그아웃 -->
         <div
           class="menu_item"
           @click="userLogOut">
