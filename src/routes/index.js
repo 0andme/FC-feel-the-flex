@@ -3,6 +3,7 @@ import Home from './Home'
 import LogIn from './LogIn'
 import SignUp from './SignUp'
 import UserPage from './UserPage'
+import MyAccount from './MyAccount'
 import Settings from './Settings'
 
 export default createRouter({
@@ -24,6 +25,10 @@ export default createRouter({
     {
       path:'/user',
       component: UserPage
+    },
+    {
+      path:'/myaccount',
+      component: MyAccount
     },
     {
       path:'/settings',
