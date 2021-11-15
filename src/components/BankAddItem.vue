@@ -4,7 +4,7 @@
     @click="isClicked">
     <img
       :src="bankLogo.find(data=>data.code===bankItem?.code)?.src"
-      :alt="userBank?.bankName" />
+      :alt="bankItem?.bankName" />
     <span>{{ bankItem.name }}</span>
   </li>
 </template>
