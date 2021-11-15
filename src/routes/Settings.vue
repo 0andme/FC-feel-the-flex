@@ -175,8 +175,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .settings_page{  
-  top: 0; //헤더 높이 만큼
-  left: 0;
+  // top: 0; //헤더 높이 만큼
+  // left: 0;
   overflow-y: scroll;
   -ms-overflow-style: none;
   /* Internet Explorer */
