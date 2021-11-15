@@ -15,6 +15,5 @@ export default async function (){
   })
   // 리턴 데이터 - 선택 가능한 은행 목록
   // [ { name:,code:,digits:,disabled:},{}]
-  console.log(data)
   return data
 }
