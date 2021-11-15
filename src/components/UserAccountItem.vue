@@ -69,19 +69,24 @@ export default {
     }
   },
   methods:{
+    // 계좌 해지
     delUserBank(){
+      // 사용자로부터 계좌 해지 재확인
       if(confirm(`${this.userBank?.bankName} 계좌를 삭제하시겠습니까?`)){
         const value={
           accountId:this.userBank.id,
           signature:true
         }
+        // 서버에서 계좌 해지
         delUserBank(value).then(()=>{
+          // 사용자 계좌 목록 업데이트
           getUserBankList().then((data)=>{
             this.$store.commit('bank/assignState',{
             userTotalBalance :data.totalBalance,
             userAccountList:data.accounts
             })
           })
+          // 선택 가능한 계좌 목록 업데이트
           getBankList()
             .then((data)=>{
               this.$store.commit('bank/assignState',{allBankList:data})

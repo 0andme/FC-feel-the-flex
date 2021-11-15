@@ -53,8 +53,10 @@ export default {
     }
   },
   methods: {
+    // 회원가입
     userSignUp() {
       const data={displayName:this.userNickname,email:this.userEmail,password: this.userPw,}
+      // 서버에 회원가입 요청
       signUp(data).then(()=>{
         this.signed=true
         this.$router.push('/')

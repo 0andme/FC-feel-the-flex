@@ -150,13 +150,17 @@ export default {
           phoneNumber:this.userPhoneNum,
           signature:this.userSignature
         }
+        // 서버에 계좌 추가하기
         addBankAccount(vaule).then(()=>{
           alert('계좌 추가 완료')
           this.resetValue()
+          // store 데이터 변경
+          // 선택 가능한 계좌 목록 업데이트
           getBankList()
             .then((data)=>{
               this.$store.commit('bank/assignState',{allBankList:data})
             }) 
+          // 사용자 계좌 목록 업데이트
           getUserBankList()
             .then((data)=>{
               this.$store.commit('bank/assignState',{

@@ -92,6 +92,10 @@ export default {
   },
   methods:{
     userLogOut(){
+      // 서버로부터 로그아웃
+      // 엑세스 토큰 삭제
+      // store의 현재 사용자 데이터 null로 변경
+      // 메인 페이지로 이동
        logOut().then(()=>{
         sessionStorage.removeItem('accessToken')
         this.isShow=false
