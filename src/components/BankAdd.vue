@@ -197,7 +197,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  border: 2px solid rgba(3, 102, 214, 0.3);
   padding: 3px;
 
 }
