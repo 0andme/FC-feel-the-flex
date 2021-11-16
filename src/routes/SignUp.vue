@@ -13,10 +13,14 @@
         v-model="userEmail"
         type="text" />
       <span>비밀번호</span>
+      <span
+        v-show="!isVaildPw()"
+        class="pw_check_msg">8자리 이상 입력해주세요</span>
       <input
         v-model="userPw"
         placeholder="8자 이상 필수"
-        type="password" />  
+        type="password"
+        @blur="isVaildPw" />  
     </template>
     <template #submitBtn>
       <button @click="userSignUp">
@@ -60,8 +64,11 @@ export default {
       signUp(data).then(()=>{
         this.signed=true
         this.$router.push('/')
-      })
+      }).catch(err=>alert(err.response.data))
     },
+    isVaildPw(){
+      return this.userPw?.length>7
+    }
   }
 }
 </script>
@@ -72,6 +79,11 @@ h1{
   text-align: left;
   margin: 0 0 32px;
 
+}
+.pw_check_msg{
+  margin-left: 5px;
+  font-size: .6rem;
+  color: #ff5757;
 }
 input{
   width: 100%;
