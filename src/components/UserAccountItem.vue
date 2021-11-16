@@ -1,11 +1,13 @@
 <template>
   <div class="account_list_item">
     <!-- 이미지 -->
-    <img
-      :src="bankLogo.find(data=>data.code===userBank?.bankCode)?.src"
-      :alt="userBank?.bankName" />
-    <!-- 은행명 -->
-    <span>{{ userBank?.bankName }}</span>
+    <div class="bank_title">
+      <img
+        :src="bankLogo.find(data=>data.code===userBank?.bankCode)?.src"
+        :alt="userBank?.bankName" />
+      <!-- 은행명 -->
+      <span>{{ userBank?.bankName }}</span>
+    </div>
     <!-- 계좌 번호 -->
     <div class="summary">
       <span>{{ userBank?.accountNumber }}</span>
@@ -13,7 +15,9 @@
       <span>{{ userBank?.balance }}</span>
     </div>
     <!-- 삭제 -->
-    <button @click="delUserBank">
+    <button
+      class="btn btn-outline-secondary"
+      @click="delUserBank">
       삭제
     </button>
   </div>
@@ -101,29 +105,44 @@ export default {
 <style lang="scss" scoped>
 .account_list_item{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 10px 0;
-  img{
-    width: 32px;
-    height: 32px;
+
+  .bank_title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 130px;
+    text-align: center;
+    margin-left: 10px;
+    img{
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
   }
   .summary{
-    width: 40%;
+    min-width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: start;
+    margin: 0 auto;
+    // flex-grow: .4;
+     span{
+       &:last-child{
+         min-width: 70px;
+       }
+     }
   }
   span{
     color: #565960;
   }
-  button{
-    display: inline-block;
-    padding: 0 10px;
-    border: 1px solid #d7dbdc;
-    background-color: #fff;
-    line-height: 24px;
-    font-size: 11px;
-    color: #646465;
-  }
+
+    button{
+      font-size: 11px;
+    }
 
 }
 </style>

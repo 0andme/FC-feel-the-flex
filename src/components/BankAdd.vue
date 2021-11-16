@@ -7,6 +7,7 @@
     <!-- activator -->
     <template #activator>
       <div class="add_btn">
+        <span>은행 당 1개만 등록 가능</span>
         <button
           class="btn btn-outline-secondary"
           type="button"
@@ -224,6 +225,14 @@ p{
 .add_btn{
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+
+  span{
+    font-size: .8rem;
+    color: #565960;
+    margin-right: 10px;
+  }
   i{
     color: seagreen;
     
@@ -233,7 +242,6 @@ p{
     }
   button{
     font-size: .8rem;
-    margin-bottom: 10px;
   }
   
 }

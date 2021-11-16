@@ -3,24 +3,25 @@
     <!-- 페이지 헤더 -->
     <div class="header container">
       <h1>결제 계좌 관리</h1>
-      <span>은행 당 1개만 등록 가능</span>
     </div>
     <div class="devider"></div>
     <!-- 페이지 body -->
     <div class="container">
       <!-- 추가 버튼 -->
-      <BankAdd />
+      <BankAdd v-if="userBankList?.length!==7" />
       <!-- 연결된 계좌 목록  -->
       <div class="account_list">
         <div class="account_list_title">
-          <p>은행/계좌번호/계좌명</p>
+          <p>은행/계좌번호/잔액</p>
           <p>관리</p>
         </div>
-        <template
-          v-for="userBank in userBankList"
-          :key="userBank.id">
-          <UserAccountItem :user-bank="userBank" />
-        </template>
+        <div class="account_list_items">
+          <template
+            v-for="userBank in userBankList"
+            :key="userBank.id">
+            <UserAccountItem :user-bank="userBank" />
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -62,30 +63,46 @@ export default {
   // 페이지 전체 가로 너비 잡는 요소
   .container{
     width: 70%;
+    min-width: 520px;
+    max-width: 700px;
     margin: 0 auto;
     // 페이지 헤더
     &.header{
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      padding: 20px 0 10px;
-      // 페이지 상세 정보
-      span{
-        margin-left: 10px;
-        font-size: .6rem;
-      }
+      padding: 10px 10px 0;
+      height: 60px;  
+    }
+    h1{
+      font-size: 1.5rem;
+      margin: 0;
     }
     .account_list{
-      padding: 20px 0 10px;
+      width: 100%;
+      padding: 5px 0 10px;
       // 계좌 목록 타이틀
       .account_list_title{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         font-size: .9rem;
         background-color: #f6f9fa;
         padding: 10px;
+        text-align: center;
+        p{
+          margin: 0;
+          width: calc(100% - 50px);
+          &:last-child{
+             width: 50px;
+          }}   
       }
-      
+      .account_list_items{
+          display: flex;
+          flex-direction: column;
+          align-content: space-between;
+          justify-content: center;
+          padding: 0 10px 0;
+        }
     }
     
   } 

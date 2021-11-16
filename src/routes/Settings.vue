@@ -1,6 +1,6 @@
 <template>
   <div class="settings_page">
-    <div class="container">
+    <div class=" header container">
       <h1>설정</h1>
     </div>
     <div class="devider"></div>
@@ -202,10 +202,7 @@ export default {
 }
 
 }
-h1{
-  padding: 20px 20px 10px;
 
-}
 //devider
 .devider{
   width: 100%;
@@ -216,7 +213,16 @@ h1{
 .container{
   width: 70%;
   margin: 0 auto;
-  
+  &.header{
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 0;
+    height: 60px;  
+  }
+  h1{
+    font-size: 1.5rem;
+    margin: 0;
+  }
   input{
     width: 100%;
     height: 35px;
