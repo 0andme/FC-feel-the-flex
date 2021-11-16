@@ -33,13 +33,6 @@
         </RouterLink>
         <div class="devider"></div>
         <div class="menu_list">
-          <RouterLink
-            to="user"
-            class="menu_item"
-            @click="isShow=false">
-            마이 페이지
-          </RouterLink>     
-          <!-- <RouterLink>장바구니</RouterLink> -->
           <!-- 계좌관리 -->
           <RouterLink
             to="myaccount"
@@ -57,11 +50,11 @@
         </div>
         <div class="devider"></div>
         <!-- 로그아웃 -->
-        <div
+        <a
           class="menu_item"
           @click="userLogOut">
           로그아웃
-        </div>
+        </a>
       </div>
     </template>    
   </FullscreenModal>
@@ -73,7 +66,6 @@ import {logOut} from '~/utils/authApi'
 import UserProfileImg from './UserProfileImg'
 export default {
   components: { FullscreenModal,UserProfileImg },
-  // emits:[changeIsHover],
   data(){
     return{
       isShow:false,
@@ -121,6 +113,9 @@ header{
 a {
   color: #3d3d3d;
   text-decoration: none;
+  &:hover{
+      color: $color-danger;  // 수정 - 색상
+    }
 }
 //devider
 .devider{
@@ -150,9 +145,7 @@ a {
       margin-bottom: 0;
     }
     // 메뉴 아이템 호버
-    &:hover{
-      color: $color-danger;  // 수정 - 색상
-    }
+    
   }
 }
 // 유저 프로필 요소 
