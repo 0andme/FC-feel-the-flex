@@ -19,18 +19,14 @@
       <div class="devider"></div>
       <div class="menu_container">
         <!-- 유저 프로필 -->
-        <RouterLink
-          to="user"
-          @click="isShow=false">
-          <div class=" user_profile menu">
-            <UserProfileImg :page-name="pageName='menu'" />
-            <span class="user_profile__name">{{ currentUser.displayName }}</span>
-          </div>
-          <div class="user_profile__email">
-            {{ currentUser.email }}
-          </div>
-          <!-- 마이 페이지 -->
-        </RouterLink>
+        <div class=" user_profile menu">
+          <UserProfileImg :page-name="pageName='menu'" />
+          <span class="user_profile__name">{{ currentUser.displayName }}</span>
+        </div>
+        <div class="user_profile__email">
+          {{ currentUser.email }}
+        </div>
+        <!-- 마이 페이지 -->
         <div class="devider"></div>
         <div class="menu_list">
           <!-- 계좌관리 -->
