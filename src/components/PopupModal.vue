@@ -74,7 +74,6 @@ export default {
 .popup_Modal{
   position: fixed;
   width: 350px;
-  height: 450px;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
