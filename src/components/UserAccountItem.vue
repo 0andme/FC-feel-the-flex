@@ -95,7 +95,7 @@ export default {
             .then((data)=>{
               this.$store.commit('bank/assignState',{allBankList:data})
             }) 
-        })
+        }).catch(err=>alert(err.response.data))
       }
     }
   }

@@ -90,7 +90,7 @@ export default {
         this.$store.commit('user/assignState',{ currentUser:null})
         this.$router.push('/')
 
-       })      
+       }).catch(err=>alert(err.response.data))     
     }
   }
 
