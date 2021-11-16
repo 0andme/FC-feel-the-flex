@@ -81,7 +81,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 li{
-  width: 50%;
+  width: 47%;
   height: 80px;
   list-style:none;
   box-sizing: border-box;
@@ -91,18 +91,19 @@ li{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 4px;
   img{
     width: 50px;
     height: 50px;
   }
 
   &.isClick{
-    background-color:lightgreen;
+    background-color:rgb(102, 255, 102);
   }
   span{
     display: block;
     text-align: center;
-}
+  }
 }
 
 </style>

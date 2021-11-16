@@ -6,9 +6,15 @@
     @is-next-btn-click="isNextBtnClick=$event">
     <!-- activator -->
     <template #activator>
-      <button @click="isShow=true">
-        추가
-      </button> 
+      <div class="add_btn">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          @click="isShow=true">
+          <i class="fas fa-plus"></i>
+          계좌 등록
+        </button> 
+      </div>
     </template>
     <!-- 헤더 -->
     <template #headerTitle>
@@ -53,8 +59,12 @@
           <div class="item">
             <div class="title">
               <span>계좌 번호</span>
-              <span v-show="!checkAccount()"> 계좌 번호 길이를 확인 하세요</span>
-              <span v-show="checkAccount()">OK</span>
+              <span
+                v-show="!checkAccount()"
+                class="title_guide err"> 계좌 번호 길이를 확인 하세요</span>
+              <span
+                v-show="checkAccount()"
+                class="title_guide">OK</span>
             </div>
             <input
               v-model="userAccount"
@@ -66,8 +76,12 @@
           <div class="item">
             <div class="title">
               <span>전화 번호</span>
-              <span v-show="!checkPhoneNum()">-를 빼고 입력해주세요</span>
-              <span v-show="checkPhoneNum()">OK</span>
+              <span
+                v-show="!checkPhoneNum()"
+                class="title_guide err">-를 빼고 입력해주세요</span>
+              <span
+                v-show="checkPhoneNum()"
+                class="title_guide">OK</span>
             </div>
             <input
               v-model="userPhoneNum"
@@ -77,14 +91,18 @@
           <!-- 계좌 등록 -->
           <div class="item">
             <div class="title">
+              <input
+                v-model="userSignature"
+                type="checkbox" 
+                @blur="checkSignature" />
               <span>계좌 등록 동의</span>
-              <span>(필수)</span>
-              <span v-show="checkSignature()">OK</span>
+              <span
+                v-show="!checkSignature()"
+                class="title_guide err">(필수)</span>
+              <span
+                v-show="checkSignature()"
+                class="title_guide">OK</span>
             </div>
-            <input
-              v-model="userSignature"
-              type="checkbox" 
-              @blur="checkSignature" />
           </div>
         </div>
         <div class="control_btn">
@@ -182,6 +200,9 @@ export default {
       this.isNextBtnClick=false
       this.isShow=false
       this.clickCount=0
+      this.userAccount=null
+      this.userPhoneNum=null
+      this.userSignature=false
     },
     checkAccount(){
       return this.userAccount?.length===this.bankAccountLength
@@ -197,6 +218,25 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+p{
+  margin: 0;
+}
+.add_btn{
+  display: flex;
+  justify-content: flex-end;
+  i{
+    color: seagreen;
+    
+  }
+  &:hover{
+      i{color: orange;}
+    }
+  button{
+    font-size: .8rem;
+    margin-bottom: 10px;
+  }
+  
+}
 @mixin modalContent{
   display: flex;
   flex-wrap: wrap;
@@ -206,17 +246,72 @@ export default {
 }
 .all_bank_list{
   @include modalContent;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 
 }
 .userDataInput{
   @include modalContent;
+  .item{
+    width: 100%;
+    // height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    .title{
+      width: 100%;
+      display: flex;
+      align-items:center;
+      justify-content: flex-start;
+      margin-bottom: 5px;
+      .title_guide{
+        font-size: .6rem;
+        margin-left: 10px;
+        color: royalblue;
+        &.err{
+          color: red;
+        }
+      }
+      input{
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        margin-bottom: 4px;
+      }
+    }
+    input{
+        width: 100%;
+        height: 30px;
+        font-size: .6rem;
+
+      }
+  }
 }
 .control_btn{
   height: 50px;
   display: flex;
   justify-content: center;
+  align-items: center;
   button{
-    width: 50%;
+    font-size: 13px;
+    height: 40px; 
+    padding: 0 23px;
+    margin: 0 3px;
+    outline: none;
+    border:1px solid;
+    &:first-child{
+      color: #fff;
+      background-color: #00c73c;
+      border-color: #00bc38;
+    }
+    &:last-child{
+      margin-left: 8px;
+      color: #222;
+      background-color: #fff;
+      border-color: #ddd;
+    }
   }
 }
 </style>
