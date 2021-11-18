@@ -32,7 +32,7 @@
           <!-- 계좌관리 -->
           <RouterLink
             v-if="!isMaster"
-            to="myaccount"
+            to="/myaccount"
             class="menu_item"
             @click.stop="isShow=false">
             계좌 관리
@@ -40,14 +40,14 @@
           <!-- 제품 관리 -->
           <RouterLink
             v-if="isMaster"
-            to="admin"
+            to="/admin"
             class="menu_item"
             @click.stop="isShow=false">
             제품 관리
           </RouterLink>
           <!-- 설정 페이지 -->
           <RouterLink
-            to="settings"
+            to="/settings"
             class="menu_item"
             @click.stop="isShow=false">
             설정
