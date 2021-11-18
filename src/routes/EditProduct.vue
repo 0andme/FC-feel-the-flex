@@ -293,7 +293,7 @@ export default {
       width: 360px;
       height: 360px;
       background-color: $gray-background-color;
-      background-image: url('../../static/thumb_null.png');
+      background-image: url('../../static/null.png');
       background-size: contain;
       margin: auto 10px;
     }

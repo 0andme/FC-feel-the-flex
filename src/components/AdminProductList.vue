@@ -2,18 +2,16 @@
   <div class="table-responsive">
     <table class="table table-hover">
       <thead>
-        <tr>
+        <tr class="head_info">
           <th
             :style="`min-width: 30px;`"></th>
-          <th
-            class="head_info">
+          <th>
             제품 수정
           </th>
           <th
             v-for="info in productsInfo"
             :ref="info"
             :key="info"
-            class="head_info"
             :class="`${info}`"
             @click="sortTable(info)">
             {{ info.toUpperCase() }}
@@ -139,6 +137,9 @@ export default {
   width: 100%;
 }
 table{
+  tr.head_info{
+    background-color: $gray-background-color;
+  }
   th{
     position: relative;
     vertical-align: middle;
@@ -146,7 +147,6 @@ table{
     padding: 0 20px;
     height: 50px;
     white-space: nowrap;
-    background-color: $gray-background-color;
     &:hover{
       background-color: $gray-background-color-hover;
     }

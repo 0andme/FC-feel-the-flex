@@ -1,8 +1,7 @@
 <template>
   <div class="adding_page">
     <h1>제품 추가하기</h1>
-    <ImgCropper 
-      v-if="cropMode" />
+    <ImgCropper v-if="cropMode" />
     <form @submit.prevent="AddProduct()">
       <div class="product_info">
         <div
@@ -193,11 +192,11 @@ export default {
       display: flex;
       width: 100%
     }
-    .thumbnail {
+    div.thumbnail {
       width: 360px;
       height: 360px;
       background-color: $gray-background-color;
-      background-image: url('../../static/thumb_null.png');
+      background-image: url('../../static/null.png');
       background-size: contain;
       margin: auto 10px;
     }
