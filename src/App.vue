@@ -4,16 +4,11 @@
 </template>
 
 <script>
-import TheHeader from '~/components/TheHeader'
+import TheHeader from "~/components/TheHeader";
 
 export default {
   components: {
-    TheHeader
-  }
-}
+    TheHeader,
+  },
+};
 </script>
-<style lang="scss">
-body{
-  font-family: 'S-CoreDream-4Regular';
-}
-</style>

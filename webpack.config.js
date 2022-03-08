@@ -20,6 +20,10 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
+          test: /\.(gif|svg|jpg|png)$/,
+          use: 'file-loader',
+        },
+        {
           test: /\.vue$/,
           use: 'vue-loader'
         },

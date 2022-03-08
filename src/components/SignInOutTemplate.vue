@@ -11,12 +11,10 @@
   </div>
 </template>
 <script>
-export default {
-  
-}
+export default {};
 </script>
 <style lang="scss" scoped>
-.wrapper{
+.wrapper {
   width: 50%;
   max-width: 400px;
   // height: 50%;
@@ -24,20 +22,21 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-40%);
+  transform: translate(-50%, -40%);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
-  // background-color: springgreen;
-  .user_form{
+  .user_form {
     line-height: 20px;
-    }
-    .is_sign_inup{text-align: center;}
+  }
+  .is_sign_inup {
+    text-align: center;
+  }
 }
-
 </style>
