@@ -18,27 +18,25 @@
       </header>
       <div class="devider"></div>
       <div class="menu_container">
-        <RouterLink
-          to="user"
-          @click="isShow=false">
-          <div class=" user_profile menu">
-            <UserProfileImg :page-name="pageName='menu'" />
-            <span class="user_profile__name">{{ currentUser.displayName }}</span>
-          </div>
-          <div class="user_profile__email">
-            {{ currentUser.email }}
-          </div>
-        </RouterLink>
+        <!-- 유저 프로필 -->
+        <div class=" user_profile menu">
+          <UserProfileImg :page-name="pageName='menu'" />
+          <span class="user_profile__name">{{ currentUser.displayName }}</span>
+        </div>
+        <div class="user_profile__email">
+          {{ currentUser.email }}
+        </div>
+        <!-- 마이 페이지 -->
         <div class="devider"></div>
         <div class="menu_list">
+          <!-- 계좌관리 -->
           <RouterLink
-            to="user"
+            to="myaccount"
             class="menu_item"
             @click="isShow=false">
-            마이 페이지
-          </RouterLink>     
-
-          <!-- <RouterLink>장바구니</RouterLink> -->
+            계좌 관리
+          </RouterLink>
+          <!-- 설정 페이지 -->
           <RouterLink
             to="settings"
             class="menu_item"
@@ -46,13 +44,13 @@
             설정
           </RouterLink>
         </div>
-
         <div class="devider"></div>
-        <div
+        <!-- 로그아웃 -->
+        <a
           class="menu_item"
           @click="userLogOut">
           로그아웃
-        </div>
+        </a>
       </div>
     </template>    
   </FullscreenModal>
@@ -64,7 +62,6 @@ import {logOut} from '~/utils/authApi'
 import UserProfileImg from './UserProfileImg'
 export default {
   components: { FullscreenModal,UserProfileImg },
-  // emits:[changeIsHover],
   data(){
     return{
       isShow:false,
@@ -83,13 +80,17 @@ export default {
   },
   methods:{
     userLogOut(){
+      // 서버로부터 로그아웃
+      // 엑세스 토큰 삭제
+      // store의 현재 사용자 데이터 null로 변경
+      // 메인 페이지로 이동
        logOut().then(()=>{
         sessionStorage.removeItem('accessToken')
         this.isShow=false
         this.$store.commit('user/assignState',{ currentUser:null})
         this.$router.push('/')
 
-       })      
+       }).catch(err=>alert(err.response.data))     
     }
   }
 
@@ -108,6 +109,9 @@ header{
 a {
   color: #3d3d3d;
   text-decoration: none;
+  &:hover{
+      color: $color-danger;  // 수정 - 색상
+    }
 }
 //devider
 .devider{
@@ -137,9 +141,7 @@ a {
       margin-bottom: 0;
     }
     // 메뉴 아이템 호버
-    &:hover{
-      color: $color-danger;  // 수정 - 색상
-    }
+    
   }
 }
 // 유저 프로필 요소 

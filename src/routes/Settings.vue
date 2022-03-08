@@ -1,6 +1,6 @@
 <template>
   <div class="settings_page">
-    <div class="container">
+    <div class=" header container">
       <h1>설정</h1>
     </div>
     <div class="devider"></div>
@@ -124,19 +124,27 @@ export default {
 
       }   
     },
+    // 사용자 프로필 변경
     editUserImg(){  
+      // 서버에 회원정보 수정 요청
       editInfo({profileImgBase64:this.profileImgSrc}).then((data)=>{
+        // 변경된 데이터를 store의 현재 유저 데이터로 갱신
         this.$store.commit('user/assignState',{currentUser:data})
       })
-
     },
+    // 사용자 이름 변경
     editUserName(){
+      // 서버에 회원 정보 수정 요청
       editInfo({displayName:this.newUserName}).then((data)=>{
+        // 변경된 데이터를 store의 현재 유저 데이터로 갱신
         this.$store.commit('user/assignState',{currentUser:data})
       })
     },
+    // 비밀번호 8자리 검사 & 비밀번호 동일한지 확인
     pwSameCheck(){
+      // 8자리이상인지 확인
       if(this.newUserPw.length>7 || this.newUserPwCheck.length>7){
+        // 두 입력값이 동일한지 확인
         if(this.newUserPw===this.newUserPwCheck )
         { 
           this.pwSameCheckMsg='OK'
@@ -151,16 +159,21 @@ export default {
       }
 
     },
+    // 비밀번호 변경
     editUserPw(){
-      // 비밀번호 재확인
+      // 비밀번호 재검사
      if( this.pwSameCheck()){
       // 변경의사 재확인
       if(confirm('비밀번호 변경시 재로그인이 필요합니다'))
       {
         editInfo({oldPassword:this.oldUserPw,newPassword:this.newUserPw}).then(()=>{
+        // 서버에 로그아웃 요청
         logOut().then(()=>{
+          // 엑세스 토큰 삭제
           sessionStorage.removeItem('accessToken')
+          // store의 현재 유저 null로 갱신
           this.$store.commit('user/assignState',{ currentUser:null})
+          // 로그인 페이지로 이동
           this.$router.push('/login')
         })
       })
@@ -175,8 +188,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .settings_page{  
-  top: 0; //헤더 높이 만큼
-  left: 0;
+  // top: 0; //헤더 높이 만큼
+  // left: 0;
   overflow-y: scroll;
   -ms-overflow-style: none;
   /* Internet Explorer */
@@ -189,10 +202,7 @@ export default {
 }
 
 }
-h1{
-  padding: 20px 20px 10px;
 
-}
 //devider
 .devider{
   width: 100%;
@@ -203,7 +213,16 @@ h1{
 .container{
   width: 70%;
   margin: 0 auto;
-  
+  &.header{
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 0;
+    height: 60px;  
+  }
+  h1{
+    font-size: 1.5rem;
+    margin: 0;
+  }
   input{
     width: 100%;
     height: 35px;

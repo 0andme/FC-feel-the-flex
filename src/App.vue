@@ -15,6 +15,5 @@ export default {
 <style lang="scss">
 body{
   font-family: 'S-CoreDream-4Regular';
-;
 }
 </style>
